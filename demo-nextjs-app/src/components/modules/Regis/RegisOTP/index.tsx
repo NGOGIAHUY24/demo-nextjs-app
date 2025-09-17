@@ -4,22 +4,27 @@ import * as Yup from "yup"
 import React from "react"
 import { ButtonStyled } from "@/components/styled"
 import { InputOtp } from "@heroui/react"
-import { ArrowArcRightIcon } from "@phosphor-icons/react/dist/ssr"
 import { ArrowRightIcon } from "@phosphor-icons/react"
 
-export default function RegisOTP() {
+interface RegisOTPProps{
+    handleBack: () => void
+    handleNext: () => void
+}
+
+export default function RegisOTP({handleBack, handleNext} : RegisOTPProps) {
     const formik = useFormik({
         initialValues: {
             opt: ""
         },
         validationSchema: Yup.object({
             opt: Yup.string()
-                .required("Email is required")
-                .matches(/^[0-9]{6}$/, "Invalid email format")
+                .required("OTP is required")
+                .matches(/^[0-9]{6}$/, "Invalid OTP format")
         }),
         onSubmit: async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 4000))
             alert(JSON.stringify(values))
+            handleNext()
         }
     })
 
@@ -45,17 +50,21 @@ export default function RegisOTP() {
                     />
                 </div>
 
-                <ButtonStyled
-                    
-                    isLoading={formik.isSubmitting}
-                    color="primary"
-                    isDisabled={!formik.isValid}
-                    onPress={() => formik.submitForm()}
-                    className="w-6 h-16 mx-auto mt-0"
-                >
+                <div>
+                    <ButtonStyled onPress={handleBack}>
+                        <ArrowRightIcon />
+                    </ButtonStyled>
 
-                    {formik.isSubmitting ? "" : <ArrowRightIcon/>}
-                </ButtonStyled>
+                    <ButtonStyled
+                        isLoading={formik.isSubmitting}
+                        color="primary"
+                        isDisabled={!formik.isValid}
+                        onPress={() => formik.submitForm()}
+                        className="w-6 h-16 mx-auto mt-0"
+                    >
+                        {formik.isSubmitting ? "" : <ArrowRightIcon />}
+                    </ButtonStyled>
+                </div>
             </div>
         </div>
     )

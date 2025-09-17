@@ -9,7 +9,11 @@ import { EyeIcon } from "@phosphor-icons/react"
 import React from "react"
 import { ButtonStyled, InputStyled } from "@/components/styled"
 
-export default function RegisInFo() {
+interface RegisInfoProps {
+    handleBack: () => void
+    handleNext: () => void
+}
+export default function RegisInFo({ handleBack, handleNext }: RegisInfoProps) {
     const [isShowPassword, setIsShowPassword] = useState(false)
     const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
 
@@ -46,6 +50,7 @@ export default function RegisInFo() {
         onSubmit: async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 4000))
             alert(JSON.stringify(values))
+            handleNext()
         }
     })
 
@@ -86,17 +91,6 @@ export default function RegisInFo() {
                 </div>
 
                 <div className="w-110 mx-auto">
-                    {/* <Input className="my-3"
-          variant="underlined"
-            label="Email"
-            value={formik.values.email}
-            onValueChange={(value) => formik.setFieldValue("email", value)}
-            isInvalid={!!(formik.touched.email && formik.errors.email)}
-            errorMessage={formik.errors.email}
-            onBlur={() => {
-              formik.setFieldTouched("email");
-            }}/> */}
-
                     <InputStyled
                         className="my-3"
                         variant="bordered"
@@ -156,15 +150,21 @@ export default function RegisInFo() {
                     />
                 </div>
 
-                <ButtonStyled
-                    className="w-110 h-10 mx-auto mt-0"
-                    isLoading={formik.isSubmitting}
-                    color="primary"
-                    isDisabled={!formik.isValid}
-                    onPress={() => formik.submitForm()}
-                >
-                    Send Form
-                </ButtonStyled>
+                <div>
+                    <ButtonStyled onPress={handleBack}>
+                        lui lai
+                    </ButtonStyled>
+
+                    <ButtonStyled
+                        className="w-110 h-10 mx-auto mt-0"
+                        isLoading={formik.isSubmitting}
+                        color="primary"
+                        isDisabled={!formik.isValid}
+                        onPress={() => formik.submitForm()}
+                    >
+                        Send Form
+                    </ButtonStyled>
+                </div>
             </div>
         </div>
     )
