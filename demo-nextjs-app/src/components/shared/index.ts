@@ -1,2 +1,5 @@
 export * from "./posts"
 export * from "./LanguageSwitcher"
+export * from "./Navbar"
+export * from "./Login"
+export * from "./SignUp/RegisInFo"
