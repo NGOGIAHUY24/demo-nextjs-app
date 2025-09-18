@@ -1,19 +1,17 @@
 "use client"
 import React, { useEffect, useState } from "react"
-import {  NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@heroui/react"
+import { NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@heroui/react"
 import NavbarStyled from "@/components/styled/NavbarStyled"
-
-
-
 
 export const AcmeLogo = () => {
     return (
-        <svg fill="none" height="36" viewBox="0 0 32 32" width="36"><path
-            clipRule="evenodd"
-            d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-            fill="currentColor"
-            fillRule="evenodd"
-        />
+        <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
+            <path
+                clipRule="evenodd"
+                d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
+                fill="currentColor"
+                fillRule="evenodd"
+            />
         </svg>
     )
 }
@@ -72,10 +70,10 @@ export default function Navbar() {
         rounded-3xl
         ${isHiddenNavbar ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"}
         ${
-    scrollState === "top" || scrollState === "middle"
-        ? "rounded-3xl bg-[#4A9782] opacity-97 justify-between mx-auto max-w-3xl scale-95"
-        : "max-w-7xl scale-100"
-}`
+            scrollState === "top" || scrollState === "middle"
+                ? "rounded-3xl bg-[#4A9782] opacity-97 justify-between mx-auto max-w-3xl scale-95"
+                : "max-w-7xl scale-100"
+        }`
 
     const itemClasses = [
         "flex",
@@ -111,7 +109,7 @@ export default function Navbar() {
                     // dấu gạch chân dưới mục được chọn
                     itemClasses
                     //
-                ],
+                ]
             }}
         >
             <NavbarBrand>

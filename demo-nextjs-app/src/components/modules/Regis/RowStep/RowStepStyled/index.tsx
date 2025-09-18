@@ -112,7 +112,7 @@ const RowSteps = React.forwardRef<HTMLButtonElement, RowStepsProps>(
             ]
 
             switch (color) {
-                case "primary":
+            case "primary":
                     userColor = "[--step-color:hsl(var(--heroui-primary))]"
                     fgColor = "[--step-fg-color:hsl(var(--heroui-primary-foreground))]"
                     break
