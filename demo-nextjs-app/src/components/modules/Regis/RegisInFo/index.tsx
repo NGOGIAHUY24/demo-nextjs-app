@@ -5,15 +5,14 @@ import { useState } from "react"
 
 import { useFormik } from "formik"
 import * as Yup from "yup"
-import { EyeIcon } from "@phosphor-icons/react"
+import { ArrowLeftIcon, EyeIcon } from "@phosphor-icons/react"
 import React from "react"
 import { ButtonStyled, InputStyled } from "@/components/styled"
 
 interface RegisInfoProps {
     handleBack: () => void
-    handleNext: () => void
 }
-export default function RegisInFo({ handleBack, handleNext }: RegisInfoProps) {
+export default function RegisInFo({ handleBack }: RegisInfoProps) {
     const [isShowPassword, setIsShowPassword] = useState(false)
     const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
 
@@ -50,122 +49,118 @@ export default function RegisInFo({ handleBack, handleNext }: RegisInfoProps) {
         onSubmit: async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 4000))
             alert(JSON.stringify(values))
-            handleNext()
+            // handleNext()
         }
     })
 
     return (
-        <div className="flex justify-center mt-50 ">
-            <div
-                className="flex flex-col gap-0
-                    w-125 h-131 max-w-4xs
-                   bg-gray-400 rounded-2xl"
-            >
-                <h1 className="font-bold mt-6 ml-6 mb-3 text-xl">Register Account (Step 3)</h1>
-
-                {/* FL name */}
-                <div className="flex mx-auto w-110 gap-5">
-                    <InputStyled
-                        variant="bordered"
-                        label="Lastname"
-                        value={formik.values.lastName}
-                        onValueChange={(value) => formik.setFieldValue("lastName", value)}
-                        isInvalid={!!(formik.touched.lastName && formik.errors.lastName)}
-                        errorMessage={formik.errors.lastName}
-                        onBlur={() => {
-                            formik.setFieldTouched("lastName")
-                        }}
-                    />
-
-                    <InputStyled
-                        variant="bordered"
-                        label="First name"
-                        value={formik.values.firstName}
-                        onValueChange={(value) => formik.setFieldValue("firstName", value)}
-                        isInvalid={!!(formik.touched.firstName && formik.errors.firstName)}
-                        errorMessage={formik.errors.firstName}
-                        onBlur={() => {
-                            formik.setFieldTouched("firstName")
-                        }}
-                    />
-                </div>
-
-                <div className="w-110 mx-auto">
-                    <InputStyled
-                        className="my-3"
-                        variant="bordered"
-                        label="Password"
-                        type={isShowPassword ? "text" : "password"}
-                        value={formik.values.password}
-                        onValueChange={(value) => formik.setFieldValue("password", value)}
-                        isInvalid={!!(formik.touched.password && formik.errors.password)}
-                        errorMessage={formik.errors.password}
-                        onBlur={() => {
-                            formik.setFieldTouched("password")
-                        }}
-                        endContent={
-                            <Link onPress={() => setIsShowPassword(!isShowPassword)}>
-                                <EyeIcon />
-                            </Link>
-                        }
-                    />
-
-                    <InputStyled
-                        className="my-3"
-                        variant="bordered"
-                        label="Confirm"
-                        type={isShowConfirmPassword ? "text" : "password"}
-                        value={formik.values.confirmPassword}
-                        onValueChange={(value) => formik.setFieldValue("confirmPassword", value)}
-                        errorMessage={formik.errors.confirmPassword}
-                        onBlur={() => {
-                            formik.setFieldTouched("confirmPassword")
-                        }}
-                        isInvalid={
-                            !!(formik.touched.confirmPassword && formik.errors.confirmPassword)
-                        }
-                        endContent={
-                            <Link onPress={() => setIsShowConfirmPassword(!isShowConfirmPassword)}>
-                                <EyeIcon />
-                            </Link>
-                        }
-                    />
-
-                    <InputStyled
-                        className="my-3"
-                        variant="bordered"
-                        label="Phone number"
-                        maxLength={10}
-                        pattern="[0-9]*"
-                        onInput={(e) => {
-                            e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "") // chỉ cho số
-                        }}
-                        value={formik.values.phone}
-                        onValueChange={(value) => formik.setFieldValue("phone", value)}
-                        isInvalid={!!(formik.touched.phone && formik.errors.phone)}
-                        errorMessage={formik.errors.phone}
-                        onBlur={() => {
-                            formik.setFieldTouched("phone")
-                        }}
-                    />
-                </div>
-
-                <div>
-                    <ButtonStyled onPress={handleBack}>
-                        lui lai
-                    </ButtonStyled>
-
-                    <ButtonStyled
-                        className="w-110 h-10 mx-auto mt-0"
-                        isLoading={formik.isSubmitting}
-                        color="primary"
-                        isDisabled={!formik.isValid}
-                        onPress={() => formik.submitForm()}
-                    >
-                        Send Form
-                    </ButtonStyled>
-                </div>
+        <form onSubmit={formik.handleSubmit} className="flex flex-col">
+            {/* Title */}
+            <div className="mx-12 mt-2 mb-2">
+                <h1 className="font-bold text-xl">Register Account (Step 3)</h1>
             </div>
-        </div>
+
+            {/* Input InFo */}
+            <div className="flex mx-auto w-110 gap-5">
+                <InputStyled
+                    variant="bordered"
+                    label="Lastname"
+                    value={formik.values.lastName}
+                    onValueChange={(value) => formik.setFieldValue("lastName", value)}
+                    isInvalid={!!(formik.touched.lastName && formik.errors.lastName)}
+                    errorMessage={formik.errors.lastName}
+                    onBlur={() => {
+                        formik.setFieldTouched("lastName")
+                    }}
+                />
+
+                <InputStyled
+                    variant="bordered"
+                    label="First name"
+                    value={formik.values.firstName}
+                    onValueChange={(value) => formik.setFieldValue("firstName", value)}
+                    isInvalid={!!(formik.touched.firstName && formik.errors.firstName)}
+                    errorMessage={formik.errors.firstName}
+                    onBlur={() => {
+                        formik.setFieldTouched("firstName")
+                    }}
+                />
+            </div>
+
+            <div className="w-110 mx-auto">
+                <InputStyled
+                    className="my-3"
+                    variant="bordered"
+                    label="Password"
+                    type={isShowPassword ? "text" : "password"}
+                    value={formik.values.password}
+                    onValueChange={(value) => formik.setFieldValue("password", value)}
+                    isInvalid={!!(formik.touched.password && formik.errors.password)}
+                    errorMessage={formik.errors.password}
+                    onBlur={() => {
+                        formik.setFieldTouched("password")
+                    }}
+                    endContent={
+                        <Link onPress={() => setIsShowPassword(!isShowPassword)}>
+                            <EyeIcon />
+                        </Link>
+                    }
+                />
+
+                <InputStyled
+                    className="my-3"
+                    variant="bordered"
+                    label="Confirm password"
+                    type={isShowConfirmPassword ? "text" : "password"}
+                    value={formik.values.confirmPassword}
+                    onValueChange={(value) => formik.setFieldValue("confirmPassword", value)}
+                    errorMessage={formik.errors.confirmPassword}
+                    onBlur={() => {
+                        formik.setFieldTouched("confirmPassword")
+                    }}
+                    isInvalid={!!(formik.touched.confirmPassword && formik.errors.confirmPassword)}
+                    endContent={
+                        <Link onPress={() => setIsShowConfirmPassword(!isShowConfirmPassword)}>
+                            <EyeIcon />
+                        </Link>
+                    }
+                />
+
+                <InputStyled
+                    className="my-3"
+                    variant="bordered"
+                    label="Phone number"
+                    maxLength={10}
+                    pattern="[0-9]*"
+                    onInput={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "")
+                    }}
+                    value={formik.values.phone}
+                    onValueChange={(value) => formik.setFieldValue("phone", value)}
+                    isInvalid={!!(formik.touched.phone && formik.errors.phone)}
+                    errorMessage={formik.errors.phone}
+                    onBlur={() => {
+                        formik.setFieldTouched("phone")
+                    }}
+                />
+            </div>
+
+            <div className="flex mx-auto gap-4 mt-4">
+                <ButtonStyled onPress={handleBack} 
+                    className="w-5 h-16 mx-auto mt-0">
+                    <ArrowLeftIcon />
+                </ButtonStyled>
+
+                <ButtonStyled
+                    type="submit"
+                    isLoading={formik.isSubmitting}
+                    color="primary"
+                    isDisabled={!formik.isValid}
+                    className="w-5 h-16 mx-auto mt-0"
+                >
+                    Submit
+                </ButtonStyled>
+            </div>
+        </form>
     )
 }

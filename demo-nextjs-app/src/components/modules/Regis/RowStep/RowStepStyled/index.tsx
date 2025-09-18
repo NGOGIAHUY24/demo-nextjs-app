@@ -112,7 +112,7 @@ const RowSteps = React.forwardRef<HTMLButtonElement, RowStepsProps>(
             ]
 
             switch (color) {
-            case "primary":
+                case "primary":
                     userColor = "[--step-color:hsl(var(--heroui-primary))]"
                     fgColor = "[--step-fg-color:hsl(var(--heroui-primary-foreground))]"
                     break
@@ -203,13 +203,15 @@ const RowSteps = React.forwardRef<HTMLButtonElement, RowStepsProps>(
                                                             backgroundColor:
                                                                 "var(--complete-background-color)",
                                                             borderColor:
-                                                                "var(--complete-border-color)"
+                                                                "var(--complete-border-color)",
+                                                            color: "var(--active-fg-color)" // thêm màu chữ cho icon
                                                         }
                                                     }}
                                                 >
                                                     <div className="flex items-center justify-center">
                                                         {status === "complete" ? (
                                                             <CheckIcon className="h-6 w-6 text-(--active-fg-color)" />
+                                                            
                                                         ) : (
                                                             <span>{stepIdx + 1}</span>
                                                         )}

@@ -4,14 +4,14 @@ import * as Yup from "yup"
 import React from "react"
 import { ButtonStyled } from "@/components/styled"
 import { InputOtp } from "@heroui/react"
-import { ArrowRightIcon } from "@phosphor-icons/react"
+import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react"
 
-interface RegisOTPProps{
+interface RegisOTPProps {
     handleBack: () => void
     handleNext: () => void
 }
 
-export default function RegisOTP({handleBack, handleNext} : RegisOTPProps) {
+export default function RegisOTP({ handleBack, handleNext }: RegisOTPProps) {
     const formik = useFormik({
         initialValues: {
             opt: ""
@@ -22,50 +22,50 @@ export default function RegisOTP({handleBack, handleNext} : RegisOTPProps) {
                 .matches(/^[0-9]{6}$/, "Invalid OTP format")
         }),
         onSubmit: async (values) => {
-            await new Promise((resolve) => setTimeout(resolve, 4000))
-            alert(JSON.stringify(values))
+            // await new Promise((resolve) => setTimeout(resolve, 4000))
+            // alert(JSON.stringify(values))
             handleNext()
         }
     })
 
     return (
-        <div className="flex justify-center mt-50 ">
-            <div
-                className="flex flex-col gap-0
-                    w-125 h-131 max-w-4xs
-                   bg-gray-400 rounded-2xl"
-            >
-                <h1 className="font-bold mt-6 ml-6 mb-2 text-xl">Register Account (Step 2)</h1>
-                <div className=" mx-auto">
-                    <p className="text-default-500 mb-2 ml-18 text-xl font-bold">6 digits OTP</p>
-                    <InputOtp
-                        length={6}
-                        value={formik.values.opt}
-                        onValueChange={(value) => formik.setFieldValue("opt", value)}
-                        isInvalid={!!(formik.touched.opt && formik.errors.opt)}
-                        errorMessage={formik.errors.opt}
-                        onBlur={() => {
-                            formik.setFieldTouched("opt")
-                        }}
-                    />
-                </div>
-
-                <div>
-                    <ButtonStyled onPress={handleBack}>
-                        <ArrowRightIcon />
-                    </ButtonStyled>
-
-                    <ButtonStyled
-                        isLoading={formik.isSubmitting}
-                        color="primary"
-                        isDisabled={!formik.isValid}
-                        onPress={() => formik.submitForm()}
-                        className="w-6 h-16 mx-auto mt-0"
-                    >
-                        {formik.isSubmitting ? "" : <ArrowRightIcon />}
-                    </ButtonStyled>
-                </div>
+        <form onSubmit={formik.handleSubmit} className="flex flex-col">
+            {/* Title */}
+            <div className="mx-12 mt-2 mb-2">
+                <h1 className="font-bold text-xl">Register Account (Step 2)</h1>
             </div>
-        </div>
+            {/* Input OTP */}
+            <div className=" mx-auto">
+                <p className="text-default-600 mb-2 ml-22 text-xl font-bold">6 digits OTP</p>
+                <InputOtp
+                    size="lg"
+                    length={6}
+                    value={formik.values.opt}
+                    onValueChange={(value) => formik.setFieldValue("opt", value)}
+                    isInvalid={!!(formik.touched.opt && formik.errors.opt)}
+                    errorMessage={formik.errors.opt}
+                    onBlur={() => {
+                        formik.setFieldTouched("opt")
+                    }}
+                />
+            </div>
+
+            <div className="flex mx-auto gap-4 mt-4">
+                <ButtonStyled onPress={handleBack}
+                    className="w-2 h-16 mx-auto mt-0">
+                    <ArrowLeftIcon />
+                </ButtonStyled>
+
+                <ButtonStyled
+                    type="submit"
+                    isLoading={formik.isSubmitting}
+                    color="primary"
+                    isDisabled={!formik.isValid}
+                    className="w-4 h-16 mx-auto mt-0"
+                >
+                    {formik.isSubmitting ? "" : <ArrowRightIcon />}
+                </ButtonStyled>
+            </div>
+        </form>
     )
 }

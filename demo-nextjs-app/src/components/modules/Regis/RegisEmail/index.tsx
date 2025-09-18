@@ -4,8 +4,7 @@ import * as Yup from "yup"
 import React from "react"
 import { ButtonStyled, InputStyled } from "@/components/styled"
 
-
-export default function RegisEmail({handleSubmit}:{handleSubmit: () => void}) {
+export default function RegisEmail({ handleSubmit }: { handleSubmit: () => void }) {
     const formik = useFormik({
         initialValues: {
             email: ""
@@ -24,11 +23,12 @@ export default function RegisEmail({handleSubmit}:{handleSubmit: () => void}) {
     })
 
     return (
-        <div className="flex flex-col">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col">
             {/* Title */}
-            <div className="mx-40">
-                <h1 className=" font-bold text-xl">Register Account (Step 1)</h1>
+            <div className="mx-8 mt-2 mb-0">
+                <h1 className="font-bold text-xl">Register Account (Step 1)</h1>
             </div>
+
             {/* Input email */}
             <div className="w-110 mx-auto">
                 <InputStyled
@@ -46,14 +46,16 @@ export default function RegisEmail({handleSubmit}:{handleSubmit: () => void}) {
             </div>
             {/* Button submit */}
             <ButtonStyled
-                className="w-110 h-10 mx-auto mt-0"
+                type="submit"
+                className="w-110 h-10 mx-auto mt-4"
                 isLoading={formik.isSubmitting}
                 color="primary"
                 isDisabled={!formik.isValid}
-                onPress={() => formik.submitForm()}
+                // onPress={() => formik.submitForm()}
             >
-                Submit
+                Send OTP
             </ButtonStyled>
-        </div>
+
+        </form>
     )
 }
