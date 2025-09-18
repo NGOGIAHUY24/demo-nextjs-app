@@ -23,7 +23,8 @@ export default function RegisOTP({ handleBack, handleNext }: RegisOTPProps) {
         }),
         onSubmit: async (values) => {
             // await new Promise((resolve) => setTimeout(resolve, 4000))
-            // alert(JSON.stringify(values))
+            let value = JSON.stringify(values)
+            
             handleNext()
         }
     })

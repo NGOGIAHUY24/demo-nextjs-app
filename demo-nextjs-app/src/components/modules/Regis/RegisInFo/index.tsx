@@ -102,7 +102,7 @@ export default function RegisInFo({ handleBack }: RegisInfoProps) {
                     }}
                     endContent={
                         <Link onPress={() => setIsShowPassword(!isShowPassword)}>
-                            <EyeIcon />
+                            <EyeIcon className="mb-1.5 w-5 h-6"/>
                         </Link>
                     }
                 />
@@ -121,7 +121,7 @@ export default function RegisInFo({ handleBack }: RegisInfoProps) {
                     isInvalid={!!(formik.touched.confirmPassword && formik.errors.confirmPassword)}
                     endContent={
                         <Link onPress={() => setIsShowConfirmPassword(!isShowConfirmPassword)}>
-                            <EyeIcon />
+                            <EyeIcon className="mb-1.5 w-5 h-6"/>
                         </Link>
                     }
                 />
