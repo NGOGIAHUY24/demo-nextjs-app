@@ -10,11 +10,12 @@ export default function Home() {
 
     return (
         <div>
-            <Link href="/posts">
+            {/* <Link href="/posts">
                 <ButtonStyled color="primary" className="mt-24 text-lg">
                     {t("post.go_to_list_page")}
                 </ButtonStyled>
-            </Link>
+            </Link> */}
+            <Link href="/header"></Link>
         </div>
     )
 }

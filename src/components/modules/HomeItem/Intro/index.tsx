@@ -4,7 +4,7 @@ import React from "react"
 import products from "./ProductList/Product.ts"
 import ProductListItem from "./ProductList/Produc-list-item"
 
-function ProductList() {
+function Intro() {
     return (
         <div className="flex flex-col justify-center items-center 
                         w-334 h-148">
@@ -27,4 +27,4 @@ function ProductList() {
     )
 }
 
-export default ProductList
+export default Intro
