@@ -1,17 +1,33 @@
 "use client"
 import React from "react"
 import Logo from "@/components/styled/Logo"
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@heroui/react"
+import { NavbarBrand, NavbarContent, NavbarItem, Link } from "@heroui/react"
 import NavbarStyled from "@/components/styled/NavbarStyled"
-import { AcmeLogo } from "./logoU"
+import UserStyled from "@/components/styled/UserStyled"
+
+//transition-all duration-400 ease-in-out data-[visible=false]:mt-0
 
 export default function NavbarUser() {
+    const baseClasses = ` bg-gray-700 mt-3
+        fixed left-0 w-full z-50
+        mx-auto max-w-7xl
+        rounded-3xl`
+    const menus = [
+        { key: "home", label: "Home" },
+        { key: "car", label: "Car" },
+        { key: "contact", label: "Contact" }
+    ]
     return (
-        <Navbar>
+        <NavbarStyled
+            classNames={{
+                base: [baseClasses]
+            }}
+        >
             <NavbarBrand>
-                <AcmeLogo />
-                <p className="font-bold text-inherit">ACME</p>
+                <Logo />
+                {/* <p className="font-bold text-inherit">ACME</p> */}
             </NavbarBrand>
+
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 <NavbarItem>
                     <Link color="foreground" href="#">
@@ -29,16 +45,12 @@ export default function NavbarUser() {
                     </Link>
                 </NavbarItem>
             </NavbarContent>
+
             <NavbarContent justify="end">
-                <NavbarItem className="hidden lg:flex">
-                    <Link href="#">Login</Link>
-                </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} color="primary" href="#" variant="flat">
-                        Sign Up
-                    </Button>
+                    <UserStyled name="Huy" description="hehe" className="text-white" />
                 </NavbarItem>
             </NavbarContent>
-        </Navbar>
+        </NavbarStyled>
     )
 }

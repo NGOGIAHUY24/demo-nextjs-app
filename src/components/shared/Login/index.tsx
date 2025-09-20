@@ -11,11 +11,12 @@ import { ButtonStyled } from "@/components/styled"
 
 export default function Login() {
     const [isShowPassword, setIsShowPassword] = useState(false)
-    const [isSelected, setIsSelected] = useState(false)
+    // const [isSelected, setIsSelected] = useState(false)
     const formik = useFormik({
         initialValues: {
             username: "",
-            password: ""
+            password: "",
+            remember: false
             // confirmPassword: "",
         },
         validationSchema: Yup.object({
@@ -85,12 +86,17 @@ export default function Login() {
 
                 <div className="flex justify-between items-center w-110 mt-0 ml-7">
                     <div className="flex flex-col gap-2">
-                        <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
+                        <Checkbox
+                            isSelected={formik.values.remember}
+                            onValueChange={(isSelected) =>
+                                formik.setFieldValue("remember", isSelected)
+                            }
+                        >
                             Remember me
                         </Checkbox>
                     </div>
                     <div>
-                        <Link className="">Forgot Password</Link>
+                        <Link href="/signup">Forgot Password</Link>
                     </div>
                 </div>
 
@@ -104,12 +110,11 @@ export default function Login() {
                 </div>
 
                 {/* <ButtonGoogle /> */}
-                <div
-                    className="flex gap-4 items-center
-                    ml-36
-                    "
-                >
-                    <Button radius="none">
+                <div className="flex gap-4 items-center ml-36">
+                    <Button
+                        radius="none"
+                        onPress={() => (window.location.href = "/api/auth/google")} // Redirect ra Google OAuth
+                    >
                         <img
                             src="https://www.svgrepo.com/show/475656/google-color.svg"
                             alt="Google"
