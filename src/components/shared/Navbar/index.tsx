@@ -1,7 +1,8 @@
 "use client"
 import React, { useEffect, useState } from "react"
-import { NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@heroui/react"
+import { NavbarBrand, NavbarContent, NavbarItem, Link } from "@heroui/react"
 import NavbarStyled from "@/components/styled/NavbarStyled"
+import { ButtonStyled } from "@/components/styled"
 
 export const AcmeLogo = () => {
     return (
@@ -95,7 +96,8 @@ export default function Navbar() {
 
     const menus = [
         { key: "home", label: "Home" },
-        { key: "car", label: "Car" },
+        { key: "self-drive", label: "Self-drive" },
+        { key: "about", label: "About" },
         { key: "contact", label: "Contact" }
     ]
 
@@ -123,7 +125,7 @@ export default function Navbar() {
                         onClick={() => setActiveMenu(menu.key)}
                         isActive={activeMenu == menu.key}
                         as={Link}
-                        href="#"
+                        href={"/" + menu.key}
                         className="text-black"
                     >
                         {menu.label}
@@ -133,27 +135,14 @@ export default function Navbar() {
 
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Button
+                    <ButtonStyled
                         as={Link}
-                        color="primary"
-                        href="#"
-                        variant="bordered"
-                        className="border-none text-black"
-                    >
-                        us English
-                    </Button>
-                </NavbarItem>
-
-                <NavbarItem>
-                    <Button
-                        as={Link}
-                        color="primary"
-                        href="#"
+                        href="/login"
                         variant="solid"
-                        className="rounded-3xl bg-[#F5F5F5] opacity-97 text-black"
+                        className="rounded-3xl opacity-97 text-black"
                     >
                         Login
-                    </Button>
+                    </ButtonStyled>
                 </NavbarItem>
             </NavbarContent>
         </NavbarStyled>
