@@ -15,7 +15,7 @@ export const cars: Car[] = [
     {
         id: "1",
         title: "VinFast VF 3",
-        img: "/vf3.png",
+        img: "https://vinfastotominhdao.vn/wp-content/uploads/VinFast-VF3-mau-trang-noc-trang-scaled.jpg",
         price: 1000000,
         couch: 4,
         km: 400,
@@ -57,7 +57,7 @@ export const cars: Car[] = [
     {
         id: "9",
         title: "VinFast VF 5",
-        img: "/vf5.png",
+        img: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-blue.png",
         price: 1300000,
         couch: 4,
         km: 460,
@@ -67,7 +67,7 @@ export const cars: Car[] = [
     {
         id: "10",
         title: "VinFast VF 5",
-        img: "/vf5b.png",
+        img: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-white.png",
         price: 1350000,
         couch: 4,
         km: 470,
@@ -79,7 +79,7 @@ export const cars: Car[] = [
     {
         id: "11",
         title: "VinFast VF 6",
-        img: "/vf6.png",
+        img: "https://vinfast-cars.vn/wp-content/uploads/2024/10/vinfast-vf6-trang.png",
         price: 1800000,
         couch: 4,
         km: 500,
@@ -89,7 +89,7 @@ export const cars: Car[] = [
     {
         id: "12",
         title: "VinFast VF 6",
-        img: "/vf6b.png",
+        img: "https://vinfastbinhbaominh.vn/wp-content/uploads/2024/10/vf6-1.jpg",
         price: 1850000,
         couch: 4,
         km: 510,
@@ -101,7 +101,7 @@ export const cars: Car[] = [
     {
         id: "13",
         title: "VinFast VF 7",
-        img: "/vf7.png",
+        img: "https://vinfasttimescity.vn/wp-content/uploads/2024/08/vinfast-vf7-mau-trang-scaled.jpg",
         price: 2000000,
         couch: 4,
         km: 520,
@@ -111,7 +111,7 @@ export const cars: Car[] = [
     {
         id: "14",
         title: "VinFast VF 7",
-        img: "/vf7b.png",
+        img: "https://vinfastdienchau.com/wp-content/uploads/2014/06/VF7_Neptune-Grey.png",
         price: 2100000,
         couch: 4,
         km: 530,
@@ -123,7 +123,7 @@ export const cars: Car[] = [
     {
         id: "2",
         title: "VinFast VF 8",
-        img: "/vf8.png",
+        img: "https://vinfast-cars.vn/wp-content/uploads/2025/02/vinfast-vf8-den.pngg",
         price: 2000000,
         couch: 4,
         km: 500,

@@ -8,6 +8,10 @@ import { MapPinAreaIcon } from "@phosphor-icons/react"
 import CardItem from "@/components/modules/HomeItem/CardItem"
 import { useCarStore } from "@/store/useCarStore"
 import Local from "@/components/styled/Local"
+import Filter from "../Filter"
+import Demo from "@/components/modules/HomeItem/Demo"
+import ProductCarousel from "../Demo/demo"
+import ProductCarouselImproved from "../Demo/demo"
 
 export default function User() {
     // const selectCars = useCarStore((state) => state.selectCars)
@@ -16,7 +20,7 @@ export default function User() {
     return (
         <>
             {/* header */}
-            <div className="flex w-full h-20 items-center justify-between bg-gray-500 rounded-2xl">
+            <div className="flex w-full h-20 items-center justify-between bg-[#f4f4f4] rounded-2xl">
                 <div>
                     <div className="ml-4 mt-4 mb-4">
                         <img src={imgS} alt="LOGO" className="w-14 h-14 rounded-2xl" />
@@ -25,18 +29,24 @@ export default function User() {
                 {/* Search */}
                 <Search />
 
-                {/* Location */}
                 <div className="flex gap-5">
+                    {/* Location */}
                     <Local />
 
+                    {/* User */}
                     <div className="flex mr-5">
-                        {/* User */}
                         <UserStyled name={"Huy"} />
                     </div>
                 </div>
             </div>
 
+            {/* Filter */}
+            <div>
+                <Filter />
+            </div>
             {/* Content */}
+
+            <div>{/* <Demo /> */}</div>
 
             <div className="flex flex-col gap-5 mt-20">
                 <h1 className="mx-auto font-bold text-3xl">Danh sách sản phẩm</h1>
