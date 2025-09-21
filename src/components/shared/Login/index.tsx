@@ -1,16 +1,19 @@
 "use client"
 import { Button, Checkbox, Input, Link } from "@heroui/react"
-import React, { useState } from "react"
+import React from "react"
 
 // import ButtonGoogle from "../../styled/ButtonGoogle"
 import { useFormik } from "formik"
 import * as Yup from "yup"
-import { EyeIcon } from "@phosphor-icons/react" //npm i @phosphor-icons/react
 import Logo from "@/components/styled/Logo"
 import { ButtonStyled } from "@/components/styled"
+import { EyeFilledIcon, EyeSlashFilledIcon } from "@/components/styled/IconEye"
 
 export default function Login() {
-    const [isShowPassword, setIsShowPassword] = useState(false)
+    // const [isShowPassword, setIsShowPassword] = useState(false)
+    const [isVisible, setIsVisible] = React.useState(false)
+
+    const toggleVisibility = () => setIsVisible(!isVisible)
     // const [isSelected, setIsSelected] = useState(false)
     const formik = useFormik({
         initialValues: {
@@ -47,6 +50,8 @@ export default function Login() {
 
                 <div className="w-110 mx-auto ">
                     <Input
+                        isClearable
+                        defaultValue="junior@heroui.com"
                         className="my-4"
                         label="Username"
                         value={formik.values.username}
@@ -56,10 +61,11 @@ export default function Login() {
                         onBlur={() => {
                             formik.setFieldTouched("username")
                         }}
+                        onClear={() => console.log("input cleared")}
                     />
                     <Input
                         label="Password"
-                        type={isShowPassword ? "text" : "password"}
+                        type={isVisible ? "text" : "password"}
                         value={formik.values.password}
                         onValueChange={(value) => formik.setFieldValue("password", value)}
                         isInvalid={!!(formik.touched.password && formik.errors.password)}
@@ -68,16 +74,25 @@ export default function Login() {
                             formik.setFieldTouched("password")
                         }}
                         endContent={
-                            <Link onPress={() => setIsShowPassword(!isShowPassword)}>
-                                <EyeIcon />
-                            </Link>
+                            <button
+                                aria-label="toggle password visibility"
+                                className="focus:outline-solid outline-transparent"
+                                type="button"
+                                onClick={toggleVisibility}
+                            >
+                                {isVisible ? (
+                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                ) : (
+                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                )}
+                            </button>
                         }
                     />
                 </div>
                 <ButtonStyled
                     className="w-110 h-10 mx-auto mt-0"
                     isLoading={formik.isSubmitting}
-                    // color="primary"
+                    color="primary"
                     isDisabled={!formik.isValid}
                     onPress={() => formik.submitForm()}
                 >

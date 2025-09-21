@@ -23,8 +23,8 @@ export default function RegisOTP({ handleBack, handleNext }: RegisOTPProps) {
         }),
         onSubmit: async (values) => {
             // await new Promise((resolve) => setTimeout(resolve, 4000))
-            let value = JSON.stringify(values)
-            
+            // let values = JSON.stringify(values)
+            alert(JSON.stringify(values))
             handleNext()
         }
     })
@@ -52,8 +52,10 @@ export default function RegisOTP({ handleBack, handleNext }: RegisOTPProps) {
             </div>
 
             <div className="flex mx-auto gap-4 mt-4">
-                <ButtonStyled onPress={handleBack}
-                    className="w-2 h-16 mx-auto mt-0">
+                <ButtonStyled
+                    onPress={handleBack}
+                    className="w-2 h-16 mx-auto mt-0 bg-primary opacity-80"
+                >
                     <ArrowLeftIcon />
                 </ButtonStyled>
 
