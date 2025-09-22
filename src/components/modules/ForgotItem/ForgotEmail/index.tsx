@@ -3,8 +3,11 @@ import { useFormik } from "formik"
 import * as Yup from "yup"
 import React from "react"
 import { ButtonStyled, InputStyled } from "@/components/styled"
+import { useEmailStore } from "@/store/useEmailStore"
 
-export default function RegisEmail({ handleSubmit }: { handleSubmit: () => void }) {
+export default function FortgotEmail({ handleSubmit }: { handleSubmit: () => void }) {
+    const setEmail = useEmailStore((state) => state.setEmail)
+
     const formik = useFormik({
         initialValues: {
             email: ""
@@ -15,9 +18,9 @@ export default function RegisEmail({ handleSubmit }: { handleSubmit: () => void 
                 .matches(/^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/, "Invalid email format")
         }),
         onSubmit: async (values) => {
-            // await new Promise((resolve) => setTimeout(resolve, 4000))
+            setEmail(values.email)
             handleSubmit()
-            // console.log()
+
             alert(JSON.stringify(values))
         }
     })
@@ -26,7 +29,7 @@ export default function RegisEmail({ handleSubmit }: { handleSubmit: () => void 
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
             {/* Title */}
             <div className="mx-8 mt-2 mb-0">
-                <h1 className="font-bold text-xl">Register Account (Step 1)</h1>
+                <h1 className="font-bold text-xl">Forgot Account (Step 1)</h1>
             </div>
 
             {/* Input email */}

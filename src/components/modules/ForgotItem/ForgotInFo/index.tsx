@@ -5,32 +5,34 @@ import { ArrowLeftIcon } from "@phosphor-icons/react"
 import React from "react"
 import { ButtonStyled, InputStyled } from "@/components/styled"
 import { Icon } from "@iconify/react"
+import { useEmailStore } from "@/store/useEmailStore"
 
 interface RegisInfoProps {
     handleBack: () => void
 }
-export default function RegisInFo({ handleBack }: RegisInfoProps) {
+
+function maskEmail(email: string) {
+    const [username, domain] = email.split("@")
+    if (username.length <= 2) {
+        return username[0] + "***@" + domain
+    }
+    return username.slice(0, 2) + "***@" + domain
+}
+
+export default function ForgotInFo({ handleBack }: RegisInfoProps) {
     // const [isShowPassword, setIsShowPassword] = useState(false)
     // const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
     const [isVisible, setIsVisible] = React.useState(false)
     const toggleVisibility = () => setIsVisible(!isVisible)
     const [isConfirmVisible, setIsConfirmVisible] = React.useState(false)
     const toggleConFirmVisibility = () => setIsConfirmVisible(!isConfirmVisible)
+    const email = useEmailStore((state) => state.email)
     const formik = useFormik({
         initialValues: {
-            lastName: "",
-            firstName: "",
             password: "",
-            confirmPassword: "",
-            phone: ""
+            confirmPassword: ""
         },
         validationSchema: Yup.object({
-            lastName: Yup.string()
-                .required("Last name is required")
-                .matches(/^[A-Za-z\s]+$/, "Last name only contains letters"),
-            firstName: Yup.string()
-                .required("First name is required")
-                .matches(/^[A-Za-z\s]+$/, "First name only contains letters"),
             password: Yup.string()
                 .required("Password is required")
                 .min(6, "Password must be at least 6 characters")
@@ -40,11 +42,7 @@ export default function RegisInFo({ handleBack }: RegisInfoProps) {
                 ),
             confirmPassword: Yup.string()
                 .oneOf([Yup.ref("password")], "Passwords must match")
-                .required("Please confirm your password"),
-            phone: Yup.string()
-                .required("Phone is required")
-                .length(10, "Phone must be exactly 10 digits")
-                .matches(/^(0[0-9]{9})$/, "Phone must be 10 digits and start with 0")
+                .required("Please confirm your password")
         }),
         onSubmit: async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 4000))
@@ -57,37 +55,21 @@ export default function RegisInFo({ handleBack }: RegisInfoProps) {
         <form onSubmit={formik.handleSubmit} className="flex flex-col">
             {/* Title */}
             <div className="mx-12 mt-2 mb-2">
-                <h1 className="font-bold text-xl">Register Account (Step 3)</h1>
+                <h1 className="font-bold text-xl">Forgot Account (Step 3)</h1>
             </div>
 
             {/* Input InFo */}
-            <div className="flex mx-auto w-110 gap-5">
-                <InputStyled
-                    variant="bordered"
-                    label="Last name"
-                    value={formik.values.lastName}
-                    onValueChange={(value) => formik.setFieldValue("lastName", value)}
-                    isInvalid={!!(formik.touched.lastName && formik.errors.lastName)}
-                    errorMessage={formik.errors.lastName}
-                    onBlur={() => {
-                        formik.setFieldTouched("lastName")
-                    }}
-                />
-
-                <InputStyled
-                    variant="bordered"
-                    label="First name"
-                    value={formik.values.firstName}
-                    onValueChange={(value) => formik.setFieldValue("firstName", value)}
-                    isInvalid={!!(formik.touched.firstName && formik.errors.firstName)}
-                    errorMessage={formik.errors.firstName}
-                    onBlur={() => {
-                        formik.setFieldTouched("firstName")
-                    }}
-                />
-            </div>
-
             <div className="w-110 mx-auto">
+                <div className="w-110 mx-auto">
+                    <InputStyled
+                        isDisabled
+                        // className="my-3"
+                        variant="bordered"
+                        label="Email"
+                        value={maskEmail(email)}
+                    />
+                </div>
+
                 <InputStyled
                     className="my-3"
                     variant="bordered"
@@ -154,23 +136,6 @@ export default function RegisInFo({ handleBack }: RegisInfoProps) {
                             )}
                         </button>
                     }
-                />
-                <InputStyled
-                    className="my-3"
-                    variant="bordered"
-                    label="Phone number"
-                    maxLength={10}
-                    pattern="[0-9]*"
-                    onInput={(e) => {
-                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "")
-                    }}
-                    value={formik.values.phone}
-                    onValueChange={(value) => formik.setFieldValue("phone", value)}
-                    isInvalid={!!(formik.touched.phone && formik.errors.phone)}
-                    errorMessage={formik.errors.phone}
-                    onBlur={() => {
-                        formik.setFieldTouched("phone")
-                    }}
                 />
             </div>
 

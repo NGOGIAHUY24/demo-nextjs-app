@@ -1,13 +1,13 @@
 "use client"
-import RegisEmail from "@/components/modules/Regis/RegisEmail"
-import RegisInFo from "@/components/modules/Regis/RegisInFo"
-import RegisOTP from "@/components/modules/Regis/RegisOTP"
-import RowStep from "@/components/modules/Regis/RowStep"
 import { cn } from "@heroui/react"
 import React, { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import ForgotInFo from "@/components/modules/ForgotItem/ForgotInFo"
+import RowStep from "@/components/modules/ForgotItem/RowStep"
+import ForgotOTP from "@/components/modules/ForgotItem/ForgotOTP"
+import FortgotEmail from "@/components/modules/ForgotItem/ForgotEmail"
 
-function SignUp() {
+export function Forgot() {
     const [step, setStep] = useState(0)
     const [direction, setDirection] = useState(1) // 1 = next, -1 = back
 
@@ -37,7 +37,7 @@ function SignUp() {
     }
 
     return (
-        <div className="flex w-full h-full justify-center items-center">
+        <div className="flex h-full w-full items-center justify-center">
             <div
                 className={cn(
                     "flex flex-col gap-2 rounded-2xl transition-all duration-300 overflow-hidden",
@@ -46,7 +46,7 @@ function SignUp() {
                     step == 2 && "w-125 h-160"
                 )}
             >
-                <div className="ml-10 mt-6 overflow-hidden">
+                <div className="ml-12 mt-0 overflow-hidden">
                     <RowStep n={step} />
                 </div>
 
@@ -63,7 +63,7 @@ function SignUp() {
                                 transition={{ duration: 0.4 }}
                                 className="absolute w-full"
                             >
-                                <RegisEmail handleSubmit={nextStep} />
+                                <FortgotEmail handleSubmit={nextStep} />
                             </motion.div>
                         )}
                         {step === 1 && (
@@ -77,7 +77,7 @@ function SignUp() {
                                 transition={{ duration: 0.4 }}
                                 className="absolute w-full"
                             >
-                                <RegisOTP handleBack={prevStep} handleNext={nextStep} />
+                                <ForgotOTP handleBack={prevStep} handleNext={nextStep} />
                             </motion.div>
                         )}
                         {step === 2 && (
@@ -91,7 +91,7 @@ function SignUp() {
                                 transition={{ duration: 0.4 }}
                                 className="absolute w-full"
                             >
-                                <RegisInFo handleBack={prevStep} />
+                                <ForgotInFo handleBack={prevStep} />
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -100,5 +100,3 @@ function SignUp() {
         </div>
     )
 }
-
-export default SignUp
