@@ -1,6 +1,6 @@
 import React from "react"
 import Navbar from "../Navbar"
-import CardItem from "@/components/modules/HomeItem/CardItem"
+import CardItem from "@/components/modules/HomeItem/CardList"
 import Carousel from "@/components/modules/HomeItem/Carousel"
 import { slides } from "@/data/picture"
 import { ButtonStyled } from "@/components/styled"

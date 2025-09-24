@@ -12,7 +12,7 @@ function splitTitle(title: string) {
     return { brand, model }
 }
 //{ data }: CardItempProps
-export default function CardItem() {
+export default function CardList() {
     // Call Store
     const selectCars = useCarStore((state) => state.selectCars)
     return (
