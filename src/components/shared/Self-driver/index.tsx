@@ -7,23 +7,30 @@ import { Autocomplete, AutocompleteItem } from "@heroui/react"
 import { MapPinAreaIcon } from "@phosphor-icons/react"
 import CardItem from "@/components/modules/HomeItem/CardList"
 import { useCarStore } from "@/store/useCarStore"
-import Local from "@/components/modules/FilterItem/LocalFilter"
+import Local from "@/components/modules/SelfDriverItem/LocalFilter"
 import Filter from "../Filter"
 import Demo from "@/components/modules/HomeItem/Demo"
-import ProductCarousel from "../Demo/demo"
-import ProductCarouselImproved from "../Demo/demo"
+import NavbarSelf from "@/components/modules/SelfDriverItem/NavbarSelf"
+import GrateStyled from "@/components/styled/GrateStyled"
+import IconUserStyled from "@/components/styled/IconUserStyled"
+import { CardStyled } from "@/components/styled"
+import Intro from "@/components/modules/HomeItem/Intro"
 
 export default function Self_Driver() {
     // const selectCars = useCarStore((state) => state.selectCars)
     return (
-        <>
+        <div className="p-0">
+            {/* Navbar */}
+            <div>
+                <NavbarSelf />
+            </div>
             {/* Filter */}
             <div>
                 <Filter />
             </div>
-
-            <div>{/* <Demo /> */}</div>
-        </>
+            <Intro />
+            <div>{/* <CardItem data={} /> */}</div>
+        </div>
     )
 }
 

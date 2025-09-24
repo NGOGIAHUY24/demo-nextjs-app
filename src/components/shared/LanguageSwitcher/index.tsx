@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
     }
 
     return (
-        <div className="w-full flex justify-end">
+        <div className="absolute right-0 flex justify-end p-2">
             {i18n.language !== "en" && (
                 <ButtonStyled onPress={() => switchLang("en")}>VI</ButtonStyled>
             )}
