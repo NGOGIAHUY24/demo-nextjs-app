@@ -12,6 +12,7 @@
     "dependencies": {
         "@heroui/react": "^2.8.4",
         "@phosphor-icons/react": "^2.1.10",
+        "@phosphor-icons/webcomponents": "^2.1.5",
         "@tanstack/react-query": "^5.87.4",
         "axios": "^1.12.0",
         "formik": "^2.4.6",

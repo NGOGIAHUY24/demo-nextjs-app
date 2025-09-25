@@ -1,3 +1,4 @@
+"use client"
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User } from "@heroui/react"
 import Link from "next/link"
 import React from "react"
@@ -13,11 +14,12 @@ import React from "react"
 //
 
 type UserProps = {
-    name: "Tony Reichert" // string
+    props: object
+    name: string
     img: string // string
 }
 
-export default function IconUserStyled({ name, img }: UserProps) {
+export default function IconUserStyled({ props, name, img }: UserProps) {
     return (
         <div className="flex items-center gap-4">
             <Dropdown placement="bottom-start">
@@ -30,6 +32,7 @@ export default function IconUserStyled({ name, img }: UserProps) {
                         }}
                         className="transition-transform"
                         name={name}
+                        {...props}
                     />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions" variant="flat">
