@@ -178,3 +178,4 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
 }
 
 export default Carousel
+

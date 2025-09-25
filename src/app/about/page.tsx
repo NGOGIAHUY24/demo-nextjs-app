@@ -1,5 +1,5 @@
 "use client"
-import AccountSidebar from "@/components/modules/UserItema/Sidebar"
+import AccountSidebar from "@/components/modules/UserItem/Sidebar"
 // import FilterBar from "@/components/shared/Filter"
 // import DateTimeStyled from "@/components/styled/DateTimeStyled"
 import React from "react"

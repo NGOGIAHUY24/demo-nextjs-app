@@ -20,12 +20,12 @@
 //         </div>
 //     )
 // }
-import AccountSidebar from "@/components/modules/UserItema/Sidebar"
+import AccountSidebar from "@/components/modules/UserItem/Sidebar"
 import React from "react"
 
 export default function UserLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex">
+        <div className="w-[1200] flex">
             <AccountSidebar />
             <div className="flex-1 p-6">{children}</div>
         </div>

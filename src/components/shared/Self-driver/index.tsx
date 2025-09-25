@@ -1,5 +1,5 @@
 "use client"
-import Search from "@/components/modules/UserItem/Search"
+import Search from "@/components/styled/Search"
 import Logo from "@/components/styled/Logo"
 import UserStyled from "@/components/styled/UserStyled"
 import React from "react"

@@ -82,41 +82,6 @@
 //         </div>
 //     )
 // }
-
-// ;("use client")
-// import React from "react"
-// import { Tabs, Tab } from "@heroui/react"
-// import Link from "next/link"
-// import { usePathname } from "next/navigation"
-
-// export default function AccountSidebar() {
-//     const pathname = usePathname()
-
-//     return (
-//         <div className="flex flex-col px-4">
-//             <div className="flex w-full flex-col">
-//                 <Tabs aria-label="Options" placement="start" selectedKey={pathname}>
-//                     <Tab
-//                         key="/user/profile"
-//                         title={<Link href="/user/profile">Tài khoản của tôi</Link>}
-//                     />
-//                     <Tab
-//                         key="/user/my-orders"
-//                         title={<Link href="/user/my-orders">Đơn hàng của tôi</Link>}
-//                     />
-//                     <Tab
-//                         key="/user/legal"
-//                         title={<Link href="/user/legal">Điều khoản và pháp lý</Link>}
-//                     />
-//                     <Tab
-//                         key="/user/change-password"
-//                         title={<Link href="/user/change-password">Đổi mật khẩu</Link>}
-//                     />
-//                 </Tabs>
-//             </div>
-//         </div>
-//     )
-// }
 "use client"
 import React from "react"
 import { Tabs, Tab, Card } from "@heroui/react"
@@ -126,7 +91,7 @@ import { usePathname } from "next/navigation"
 const tabs = [
     { key: "profile", label: "Tài khoản của tôi", href: "/user/profile" },
     { key: "orders", label: "Đơn hàng của tôi", href: "/user/my-orders" },
-    { key: "legal", label: "Điều khoản và pháp lý", href: "/user/legal" },
+    // { key: "legal", label: "Điều khoản và pháp lý", href: "/user/legal" },
     { key: "password", label: "Đổi mật khẩu", href: "/user/change-password" }
 ]
 
@@ -142,7 +107,7 @@ export default function AccountSidebar() {
                             <Card>
                                 {tab.key === "profile"}
                                 {tab.key === "orders"}
-                                {tab.key === "legal"}
+                                {/* {tab.key === "legal"} */}
                                 {tab.key === "password"}
                             </Card>
                         </Tab>
