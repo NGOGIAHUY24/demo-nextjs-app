@@ -34,6 +34,12 @@ export default function ProfilePage() {
             <div>
                 <DatePickerStyled />
             </div>
+            <div>
+                <DatePickerStyled />
+            </div>
+            <div>
+                <DatePickerStyled />
+            </div>
         </div>
     )
 }
