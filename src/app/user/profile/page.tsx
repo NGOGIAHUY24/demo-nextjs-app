@@ -10,62 +10,74 @@ import { NotePencilIcon } from "@phosphor-icons/react/dist/ssr"
 import React, { useState } from "react"
 // import { useTranslation } from "react-i18next"
 export default function ProfilePage() {
-    const [buttonState, setButtonState] = useState(false)
-    const img = "https://i.pravatar.cc/150?u=a042581f4e29026024d"
-    // const { t } = useTranslation()
+    const [showChange, setShowChange] = useState(true)
+    const img =
+        "https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/433446266_758349243066734_884520383743627659_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=FsaTEptwBqwQ7kNvwGBnPfY&_nc_oc=Adl360kkqq9z98joIstrLI_QwmT7Rz78mugSWoMtIDaHnYtsi0LBcoxs5ZVdaHeo9oU&_nc_zt=23&_nc_ht=scontent.fsgn19-1.fna&_nc_gid=uf7J93HxXk7lntMDq36kgQ&oh=00_Afazntj845yvpldFU92bWJNTFamk4xwJTOVFZbYZ2GfZjQ&oe=68DC722B"
+
     return (
         <div className="w-[984]">
             <div className="text-3xl mb-4 p-4 font-bold">Thông tin tài khoản </div>
-
             <div className="flex gap-60">
                 <div className="ml-6">
                     <AvaterStyled name="Ngo Gia Huy" img={img} />
                 </div>
 
-                if()
-                <ButtonStyled
-                    className="bg-white border border-primary text-primary
+                {showChange ? (
+                    <ButtonStyled
+                        className="bg-white border border-primary text-primary
                                  hover:bg-primary hover:text-black mt-9"
-                >
-                    <div>
-                        <NotePencilIcon />
-                    </div>
-                    Chỉnh sửa thông tin
-                </ButtonStyled>
-
-                <ButtonStyled
-                    className="bg-white border border-primary text-primary
+                        onPress={() => setShowChange(!showChange)}
+                    >
+                        <div>
+                            <NotePencilIcon />
+                        </div>
+                        Chỉnh sửa thông tin
+                    </ButtonStyled>
+                ) : (
+                    <ButtonStyled
+                        className="bg-white border border-primary text-primary
                                  hover:bg-primary hover:text-black mt-9"
-                >
-                    <div>
-                        <NotePencilIcon />
-                    </div>
-                    Lưu thông tin
-                </ButtonStyled>
+                        onPress={() => setShowChange(!showChange)}
+                    >
+                        Lưu thông tin
+                    </ButtonStyled>
+                )}
             </div>
+            {showChange === false && (
+                <div className="flex justify-center item-center mt-6 ">
+                    <InputStyled
+                        label="Tên tài khoản"
+                        placeholder="Tên..."
+                        variant="bordered"
+                        className="w-164"
+                    />
+                </div>
+            )}
 
-            <div className="flex justify-center item-center mt-6">
-                <InputStyled 
-                    label="Tên tài khoản"
-                    placeholder="Tên..."
+            <div className="flex justify-center gap-14 mt-5">
+                <DatePickerStyled
+                    className="w-75"
                     variant="bordered"
-                    className="w-175"
+                    {...(showChange === false ? { isDisabled: false } : { isDisabled: true })}
+                />
+                <SexPicker
+                    {...(showChange === false ? { isDisabled: false } : { isDisabled: true })}
+                    label="Sex"
+                    color="primary"
+                    placeholder="Chọn giới tính"
+                    variant="bordered"
+                    className="w-75"
                 />
             </div>
-
-            <div className="flex justify-around mt-5">
-                <DatePickerStyled className="w-74" variant="bordered"/>
-                <SexPicker label="Sex" placeholder="Chọn giới tính" variant="bordered" className="w-74" />
-            </div>
-
-            <div className="flex justify-around mt-10">
+            <div className="flex justify-center gap-14 mt-5 pb-10">
                 {/* Phone */}
-                <InputPhone/>
+                <InputPhone style={showChange} />
 
                 {/* Email */}
                 <Input
-                    isReadOnly
+                    {...(showChange === false ? { isDisabled: false } : { isDisabled: true })}
                     className="w-75"
+                    color="primary"
                     defaultValue="junior@heroui.com"
                     label="Email"
                     type="email"

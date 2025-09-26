@@ -4,6 +4,7 @@ import React from "react"
 export default function DatePickerStyled(props: DatePickerProps) {
     return (
         <DatePicker
+            color="primary"
             label="Birth date"
             {...props}
             className={cn(" font-medium text-base", props.className)}

@@ -13,6 +13,8 @@ export default function AvaterStyled({ img, name, props }: AvatarStyledProps) {
         <div className="flex gap-4 items-center">
             <div>
                 <Avatar
+                    isBordered
+                    color="default"
                     className="w-30 h-30 text-large"
                     src={img}
                     {...props}
