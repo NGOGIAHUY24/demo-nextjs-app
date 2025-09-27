@@ -1,35 +1,56 @@
+import { orders } from "@/data/order"
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/react"
 import React from "react"
-export default function TableStyled() {
+// { data, loading }
+
+export default function TableStyled({ data, loading }) {
+    if (loading) return <div className="text-center">⏳ Loading order...</div>
+    if (!data || data.length === 0) return <div className="text-center">No order</div>
     return (
-        <Table aria-label="Example static collection table">
+        <Table aria-label="Example static collection table" className="w-full">
             <TableHeader>
-                <TableColumn>NAME</TableColumn>
-                <TableColumn>ROLE</TableColumn>
-                <TableColumn>STATUS</TableColumn>
+                <TableColumn className="text-xl text-center">Order</TableColumn>
+                <TableColumn className="text-xl text-center">Vehicle model</TableColumn>
+                <TableColumn className="text-xl text-center">Pickup time</TableColumn>
+                <TableColumn className="text-xl text-center">Return time</TableColumn>
+                <TableColumn className="text-xl text-center">Pickup address</TableColumn>
+                <TableColumn className="text-xl text-center">Status</TableColumn>
             </TableHeader>
+
             <TableBody>
-                <TableRow key="1">
-                    <TableCell>Tony Reichert</TableCell>
-                    <TableCell>CEO</TableCell>
-                    <TableCell>Active</TableCell>
-                </TableRow>
-                <TableRow key="2">
-                    <TableCell>Zoey Lang</TableCell>
-                    <TableCell>Technical Lead</TableCell>
-                    <TableCell>Paused</TableCell>
-                </TableRow>
-                <TableRow key="3">
-                    <TableCell>Jane Fisher</TableCell>
-                    <TableCell>Senior Developer</TableCell>
-                    <TableCell>Active</TableCell>
-                </TableRow>
-                <TableRow key="4">
-                    <TableCell>William Howard</TableCell>
-                    <TableCell>Community Manager</TableCell>
-                    <TableCell>Vacation</TableCell>
-                </TableRow>
+                {data.map((item) => (
+                    <TableRow key={item.order} className="border-b border-gray-300">
+                        <TableCell className="text-center">{item.order}</TableCell>
+                        <TableCell className="text-center">{item.model}</TableCell>
+                        <TableCell className="text-center">{item.pickupTime}</TableCell>
+                        <TableCell className="text-center">{item.returnTime}</TableCell>
+                        <TableCell className="text-center">{item.pickupAddress}</TableCell>
+                        <TableCell className="text-center">{item.status}</TableCell>
+                    </TableRow>
+                ))}
             </TableBody>
         </Table>
     )
+}
+{
+    /* <TableCell>
+                        <div className="flex justify-center items-center h-full w-full">
+                            Tony Reichert
+                        </div>
+                    </TableCell>
+                    <TableCell>
+                        <div className="flex justify-center items-center h-full w-full">CEO</div>
+                    </TableCell>
+                    <TableCell>
+                        <div className="flex justify-center items-center h-full w-full">Active</div>
+                    </TableCell>
+                    <TableCell>
+                        <div className="flex justify-center items-center h-full w-full">Active</div>
+                    </TableCell>
+                    <TableCell>
+                        <div className="flex justify-center items-center h-full w-full">Active</div>
+                    </TableCell>
+                    <TableCell>
+                        <div className="flex justify-center items-center h-full w-full">Active</div>
+                    </TableCell> */
 }

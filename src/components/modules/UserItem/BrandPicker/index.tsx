@@ -1,30 +1,46 @@
 "use client"
-import { cn, Select, SelectItem, SelectProps } from "@heroui/react"
+import { Autocomplete, AutocompleteItem } from "@heroui/react"
 import React from "react"
 
-export const brands = [
-    { key: "vf3", label: "VF3" },
-    { key: "vf5", label: "VF5" },
-    { key: "vf5Plus", label: "VF5 Plus" },
-    { key: "vf7", label: "VF7" }
+interface BrandItem {
+    key: string
+    label: string
+}
+
+export const brands: BrandItem[] = [
+    { key: "1", label: "VF3" },
+    { key: "2", label: "VF5" },
+    { key: "3", label: "VF5 Plus" },
+    { key: "4", label: "VF7" },
+    { key: "5", label: "VF7S" },
+    { key: "9", label: "VF9" }
 ]
 
-// Loại bỏ `children` vì mình render sẵn
-type BrandPickerProps = Omit<SelectProps, "children">
+type BrandFillterProps = {
+    value: string | null
+    onChange: (value: string) => void
+}
 
-export default function BrandPicker(props: BrandPickerProps) {
+export default function BrandPicker({ value, onChange }: BrandFillterProps) {
     return (
-        <div className="flex items-center">
-            <Select
-                variant="bordered"
-                isClearable
-                {...props}
-                className={cn("max-w-xs font-medium text-base", props.className)}
-            >
-                {brands.map((brand) => (
-                    <SelectItem key={brand.key}>{brand.label}</SelectItem>
-                ))}
-            </Select>
-        </div>
+        // <div className="flex items-center">
+        <Autocomplete
+            items={brands}
+            variant="bordered"
+            isClearable
+            // startContent={<MapPinAreaIcon className="text-xl" />}
+            className="max-w-55 h-14"
+            label="Branch"
+            placeholder="Tất cả"
+            selectedKey={value ?? undefined}
+            onSelectionChange={(key) => {
+                onChange(key as string)
+                console.log("Selected:", key)
+            }}
+        >
+            {(item: (typeof brands)[0]) => (
+                <AutocompleteItem key={item.key}>{item.label}</AutocompleteItem>
+            )}
+        </Autocomplete>
     )
 }
