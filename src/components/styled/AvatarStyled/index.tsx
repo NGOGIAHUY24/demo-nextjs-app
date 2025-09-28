@@ -21,7 +21,7 @@ export default function AvaterStyled({ img, name, props }: AvatarStyledProps) {
                     // className={cn("font-medium text-base", props.className)}
                 />
             </div>
-            <span className="text-4xl">{name}</span>
+            <span className="text-3xl">{name}</span>
         </div>
     )
 }

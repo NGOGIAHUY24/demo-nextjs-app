@@ -16,7 +16,7 @@ export default function ProfilePage() {
 
     return (
         <div className="w-[984]">
-            <div className="text-3xl mb-4 p-4 font-bold">Thông tin tài khoản </div>
+            <div className="text-3xl mb-4 p-4 font-bold">Account information</div>
             <div className="flex gap-60">
                 <div className="ml-6">
                     <AvaterStyled name="Ngo Gia Huy" img={img} />
@@ -31,7 +31,7 @@ export default function ProfilePage() {
                         <div>
                             <NotePencilIcon />
                         </div>
-                        Chỉnh sửa thông tin
+                        Edit information
                     </ButtonStyled>
                 ) : (
                     <ButtonStyled
@@ -39,15 +39,15 @@ export default function ProfilePage() {
                                  hover:bg-primary hover:text-black mt-9"
                         onPress={() => setShowChange(!showChange)}
                     >
-                        Lưu thông tin
+                        Save information
                     </ButtonStyled>
                 )}
             </div>
             {showChange === false && (
                 <div className="flex justify-center item-center mt-6 ">
                     <InputStyled
-                        label="Tên tài khoản"
-                        placeholder="Tên..."
+                        label="Account name"
+                        placeholder="Full name"
                         variant="bordered"
                         className="w-164"
                     />
@@ -64,7 +64,7 @@ export default function ProfilePage() {
                     {...(showChange === false ? { isDisabled: false } : { isDisabled: true })}
                     label="Sex"
                     color="primary"
-                    placeholder="Chọn giới tính"
+                    placeholder="Choose sex"
                     variant="bordered"
                     className="w-75"
                 />

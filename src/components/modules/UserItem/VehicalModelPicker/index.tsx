@@ -21,7 +21,7 @@ type BrandFillterProps = {
     onChange: (value: string) => void
 }
 
-export default function BrandPicker({ value, onChange }: BrandFillterProps) {
+export default function VehicalModelPicker({ value, onChange }: BrandFillterProps) {
     return (
         // <div className="flex items-center">
         <Autocomplete
@@ -31,7 +31,7 @@ export default function BrandPicker({ value, onChange }: BrandFillterProps) {
             // startContent={<MapPinAreaIcon className="text-xl" />}
             className="max-w-55 h-14"
             label="Branch"
-            placeholder="Tất cả"
+            // placeholder="All"
             selectedKey={value ?? undefined}
             onSelectionChange={(key) => {
                 onChange(key as string)

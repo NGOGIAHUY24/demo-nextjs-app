@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { NavbarBrand, NavbarContent, NavbarItem, Link } from "@heroui/react"
 import NavbarStyled from "@/components/styled/NavbarStyled"
 import { ButtonStyled } from "@/components/styled"
+import { useLoginDiscloresureSingleton, useRegisDiscloresureSingleton } from "@/hooks"
 
 export const AcmeLogo = () => {
     return (
@@ -59,6 +60,7 @@ export default function Navbar() {
         }
 
         window.addEventListener("scroll", handleScroll, { passive: true })
+
         return () => window.removeEventListener("scroll", handleScroll)
     }, [lastScrollY])
 
@@ -101,7 +103,8 @@ export default function Navbar() {
         { key: "contact", label: "Contact" }
     ]
 
-    /*xử lí navbar */
+    const { onOpen: onOpenLogin } = useLoginDiscloresureSingleton()
+    const { onOpen: onOpenSignup } = useRegisDiscloresureSingleton()
     return (
         <NavbarStyled
             data-visible={!isHiddenNavbar}
@@ -136,12 +139,22 @@ export default function Navbar() {
             <NavbarContent justify="end">
                 <NavbarItem>
                     <ButtonStyled
-                        as={Link}
-                        href="/login"
+                        onPress={() => onOpenLogin()}
+                        // as={Link}
+                        // href="/login"
                         variant="solid"
                         className="rounded-3xl opacity-97 text-black"
                     >
                         Login
+                    </ButtonStyled>
+                    <ButtonStyled
+                        onPress={() => onOpenSignup()}
+                        // as={Link}
+                        // href="/login"
+                        variant="solid"
+                        className="rounded-3xl opacity-97 text-black"
+                    >
+                        Sign Up
                     </ButtonStyled>
                 </NavbarItem>
             </NavbarContent>

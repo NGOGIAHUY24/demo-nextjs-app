@@ -3,12 +3,15 @@
 import TableStyled from "@/components/styled/TableStyled"
 import React, { useEffect, useState } from "react"
 import { orders } from "@/data/order"
-export default function MyOrdersPage() {
+import FillterBarOrder from "@/components/modules/UserItem/FilterBarOrder"
+
+export default function Page() {
     const [order, setOrder] = useState(orders)
     const [filters, setFilter] = useState()
 
     useEffect(() => {
         if (filters) {
+            console.log("data filter gửi BE:", filters)
             //fetch api
         }
     }, [filters])
