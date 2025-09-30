@@ -25,7 +25,7 @@ export default function StatusOrderPicker({ value, onChange }: StatusOrderProps)
             className="max-w-55 h-14"
             label="Status"
             // placeholder=""
-            selectedKey={value !== null ? String(value) : undefined} //ép sang string mới hiện value trong ô
+            selectedKey={value !== null ? String(value) : undefined} //é sang pstring mới hiện value trong ô
             onSelectionChange={(key) => {
                 if (key !== null) {
                     onChange(Number(key) as OrderStatus) // convert ngược lại về number để lưu vào formik
